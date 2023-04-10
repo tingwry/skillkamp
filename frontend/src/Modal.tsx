@@ -1,7 +1,6 @@
 import React from "react";
 
-const Modal = (open: any, onClose: any) => {
-  if (!open) return null;
+function Modal() {
   return (
     <div onClick={onClose} className="overlay">
       <div className="modalContainer">
