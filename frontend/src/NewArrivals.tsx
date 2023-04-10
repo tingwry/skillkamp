@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Product from "./dto/ProductDTO";
+import Popup from "./Popup";
+import { Link } from "react-router-dom";
 
 export default function NewArrivals() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -38,6 +40,7 @@ export default function NewArrivals() {
 
         <div className="container">
           {products.map((product) => (
+            // <Link to={"/products/" + product.productName}>
             <div className="card">
               <div
                 key={product.productName}
@@ -49,14 +52,17 @@ export default function NewArrivals() {
                 }}
               />
               <div className="card">I'm a product</div>
-              <button
-                className="card modalBtn"
-                onClick={() => setOpenDialog(true)}
-              >
+
+              <button className="card" onClick={() => setOpenDialog(true)}>
                 Add to Cart
               </button>
+              <Popup
+                openDialog={openDialog}
+                setOpenDialog={setOpenDialog}
+                productName={product.productName}
+              ></Popup>
 
-              <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+              {/* <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
                 <div className="overlay">
                   <div className="modalContainer">
                     <img
@@ -81,8 +87,9 @@ export default function NewArrivals() {
                     </div>
                   </div>
                 </div>
-              </Dialog>
+              </Dialog> */}
             </div>
+            // </Link>
           ))}
         </div>
       </div>
