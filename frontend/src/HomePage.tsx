@@ -15,7 +15,7 @@ export default function HomePage() {
   };
   return (
     <>
-      <h1>happy kids</h1>
+      <h1 className="text">happy kids</h1>
       <Box>
         <TabContext value={value}>
           <TabList aria-label="tabs" onChange={handleTabChange} centered>
