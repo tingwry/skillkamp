@@ -59,7 +59,10 @@ export default function NewArrivals() {
               <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
                 <div className="overlay">
                   <div className="modalContainer">
-                    <img src={product.imgUrl} alt="" />
+                    <img
+                      src="https://drive.google.com/uc?export=view&id=1yFSF-g7fxuPL9K5SyDwkAVCPt0pkhGHG"
+                      alt=""
+                    />
                     <div className="modalRight">
                       <p
                         className="closedBtn"
