@@ -32,23 +32,30 @@ import axios from "axios";
 import Product from "./dto/ProductDTO";
 // import { useParams } from "react-router-dom";
 
-function Popup(props: any) {
-  const { openDialog, setOpenDialog, productName } = props;
+interface PopupProps {
+  openDialog: boolean;
+  setOpenDialog: (value: boolean) => void;
+  product: Product;
+}
+
+function Popup(props: PopupProps) {
+  const { openDialog, setOpenDialog, product } = props;
   // const { productName } = useParams();
 
-  const [product, setProduct] = useState<Product>();
+  // const [product, setProduct] = useState<Product>();
 
-  async function fetchProduct() {
-    const res = await axios.get(
-      "http://localhost:4000/products/" + { productName }
-    );
-    setProduct(res.data);
-  }
+  // async function fetchProduct() {
+  //   const res = await axios.get(
+  //     "http://localhost:4000/products/" + { productName }
+  //   );
+  //   setProduct(res.data);
+  // }
 
-  useEffect(() => {
-    fetchProduct();
-  }, []);
+  // useEffect(() => {
+  //   fetchProduct();
+  // }, []);
 
+  if (product == null) return null;
   return (
     <Dialog open={openDialog} maxWidth="md">
       <DialogTitle>
@@ -57,7 +64,7 @@ function Popup(props: any) {
       <DialogContent>
         <div>
           <div>
-            <p>{productName}</p>
+            <p>{product.productName}</p>
             <img src={product?.imgUrl} />
           </div>
         </div>

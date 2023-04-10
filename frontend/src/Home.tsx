@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Home.css";
 import type {} from "@mui/lab/themeAugmentation";
 import NewArrivals from "./NewArrivals";
+import { Link } from "react-router-dom";
 
 const picsUrl = [
   "https://drive.google.com/uc?export=view&id=1yaeEClFdnfEyyPRDjGWSz1dDQOnVMOI2",
@@ -9,7 +10,8 @@ const picsUrl = [
   "https://drive.google.com/uc?export=view&id=1ME6uqQgplJmv09NKjEGC4YYLb-o9xHnt",
 ];
 
-export default function Home() {
+export default function Home(props: any) {
+  const { setTab } = props;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -25,9 +27,17 @@ export default function Home() {
         className="CoverImg"
         style={{ backgroundImage: `url(${picsUrl[index]})` }}
       >
-        <h1 className="text">Hello</h1>
+        {index == 0 && (
+          <>
+            <h1 className="text">Hello</h1> <button>Click me</button>
+          </>
+        )}
       </div>
       <NewArrivals />
+
+      <div className="center">
+        <button onClick={() => setTab("2")}>Shop All</button>
+      </div>
     </>
   );
 }

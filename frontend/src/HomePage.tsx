@@ -3,6 +3,7 @@ import type {} from "@mui/lab/themeAugmentation";
 import { Box, Tab } from "@mui/material";
 import { useState } from "react";
 import Home from "./Home";
+import ShopCollection from "./ShopCollection";
 
 export default function HomePage() {
   const [value, setValue] = useState("1");
@@ -24,8 +25,8 @@ export default function HomePage() {
             <Tab value="3" label="Our Story" />
             <Tab value="4" label="Contact" />
           </TabList>
-          <TabPanel value="1">{<Home />}</TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
+          <TabPanel value="1">{<Home setTab={setValue} />}</TabPanel>
+          <TabPanel value="2">{<ShopCollection />}</TabPanel>
           <TabPanel value="3">Item Three</TabPanel>
           <TabPanel value="4">Item Four</TabPanel>
         </TabContext>

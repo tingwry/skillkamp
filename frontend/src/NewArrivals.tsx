@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 export default function NewArrivals() {
   const [openDialog, setOpenDialog] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   async function fetchProducts() {
     const res = await axios.get("http://localhost:4000/products");
@@ -37,11 +38,15 @@ export default function NewArrivals() {
         }}
       >
         <h2>New Arrivals</h2>
-
+        <Popup
+          openDialog={openDialog}
+          setOpenDialog={setOpenDialog}
+          product={selectedProduct}
+        ></Popup>
         <div className="container">
           {products.map((product) => (
             // <Link to={"/products/" + product.productName}>
-            <div className="card">
+            <div key={product.productName} className="card">
               <div
                 key={product.productName}
                 className="card"
@@ -53,14 +58,15 @@ export default function NewArrivals() {
               />
               <div className="card">I'm a product</div>
 
-              <button className="card" onClick={() => setOpenDialog(true)}>
+              <button
+                className="card"
+                onClick={() => {
+                  setOpenDialog(true);
+                  setSelectedProduct(product);
+                }}
+              >
                 Add to Cart
               </button>
-              <Popup
-                openDialog={openDialog}
-                setOpenDialog={setOpenDialog}
-                productName={product.productName}
-              ></Popup>
 
               {/* <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
                 <div className="overlay">
