@@ -6,7 +6,7 @@ const usersSchema = new mongoose.Schema(
     {
         email: { type: String, required: true },
         passwordHash: { type: String, required: true },
-        cart: { type: [] },
+        cart: { type: [], required: false },
 
     }
 )

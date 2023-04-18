@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 
 import { connectToDatabase } from "./services/mongoose.service"
 import { router } from "./routes/routes"
+import { userRouter } from "./routes/auth";
 // import { userRouter } from "./routes/userloginsignup"
 
 async function main() {
@@ -20,7 +21,7 @@ async function main() {
         app.use(cors());
         app.use(express.json());
 
-        // app.use(userRouter);
+        app.use(userRouter);
         app.use(router);
 
         app.listen(port, () => {
