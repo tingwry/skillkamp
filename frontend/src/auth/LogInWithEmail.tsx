@@ -1,10 +1,8 @@
 import { TextField, Button, Box } from "@mui/material";
 import React, { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ReCAPTCHA from "react-google-recaptcha";
 
-function Signup() {
-  const onChange = () => {};
+function LogInWithEmail() {
   const navigate = useNavigate();
   const [formInput, setFormInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
@@ -23,7 +21,7 @@ function Signup() {
       password: data.get("password"),
     };
 
-    fetch("http://localhost:4000/signup", {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify(jsonData),
       headers: {
@@ -36,7 +34,7 @@ function Signup() {
       .then((response) => console.log("Success:", JSON.stringify(response)))
       .then(() => navigate("/"))
       .catch((error) => {
-        alert("Signup failed.");
+        alert("Login failed.");
         console.error("Error:", error);
       });
   };
@@ -49,9 +47,9 @@ function Signup() {
 
   return (
     <div className="screenCenter">
-      <h1 className="center">Sign Up</h1>
+      <h1 className="center">Log In</h1>
       <p className="center">
-        Already a member? <Link to={"/login"}>Log In</Link>
+        New to this site? <Link to={"/signup"}>Sign Up</Link>
       </p>
       <form onSubmit={handleSubmit}>
         <div className="center">
@@ -72,13 +70,9 @@ function Signup() {
             onChange={handleInput}
           />
         </div>
-        <ReCAPTCHA
-          sitekey="6Le_5JolAAAAAFMdtDEeEu_VqVqzjwe0h6pNidHX"
-          onChange={onChange}
-        />
         <div className="center">
           <Button type="submit" id="submit" variant="text" color="primary">
-            Sign Up
+            Log In
           </Button>
         </div>
       </form>
@@ -86,4 +80,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default LogInWithEmail;
