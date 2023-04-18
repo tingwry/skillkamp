@@ -9,14 +9,11 @@ import HomePage from "./HomePage";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <h1 className="text">happy kids</h1>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <hr></hr>
-      <Footer />
     </BrowserRouter>
   </React.StrictMode>
 );

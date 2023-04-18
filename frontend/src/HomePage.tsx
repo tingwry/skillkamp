@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Signup from "./auth/Signup";
 import ContactUs from "./ContactUs";
+import Footer from "./Footer";
 import Home from "./Home";
 import OurStory from "./OurStory";
 import ShopCollection from "./ShopCollection";
@@ -20,6 +21,7 @@ export default function HomePage() {
   };
   return (
     <>
+      <h1 className="text">happy kids</h1>
       <Box>
         <Link to={"/signup"}>
           <Button>Log In</Button>
@@ -42,6 +44,8 @@ export default function HomePage() {
           <TabPanel value="4">{<ContactUs />}</TabPanel>
         </TabContext>
       </Box>
+      <hr></hr>
+      <Footer />
     </>
   );
 }

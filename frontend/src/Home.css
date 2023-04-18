@@ -47,6 +47,14 @@ button:hover:not(.tabs) {
     justify-content: center;
 }
 
+.screenCenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+  }
+
 .CoverImg {
     background-position: center;
     background-size: cover;

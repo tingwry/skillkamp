@@ -1,8 +1,10 @@
 import { TextField, Button, Box } from "@mui/material";
 import React, { useReducer } from "react";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Signup() {
+  const onChange = () => {};
   const [formInput, setFormInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
     {
@@ -44,9 +46,9 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <p>
+    <div className="screenCenter">
+      <h1 className="center">Sign Up</h1>
+      <p className="center">
         Already a member? <Link to={"/login"}>Log In</Link>
       </p>
       <form onSubmit={handleSubmit}>
@@ -68,10 +70,13 @@ function Signup() {
             onChange={handleInput}
           />
         </div>
-
+        <ReCAPTCHA
+          sitekey="6Le_5JolAAAAAFMdtDEeEu_VqVqzjwe0h6pNidHX"
+          onChange={onChange}
+        />
         <div className="center">
           <Button type="submit" id="submit" variant="text" color="primary">
-            Submit
+            Sign Up
           </Button>
         </div>
       </form>
