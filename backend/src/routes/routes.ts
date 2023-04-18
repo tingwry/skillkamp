@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { Request,Response } from "express";
 import { MongooseError } from 'mongoose';
 import { ProductsModel } from '../model/products';
+import { QuestionsModel } from '../model/questions';
 // import { TokenPayload } from '../loginsignup/login.post'
 // import * as jwt from "jsonwebtoken";
 
@@ -30,4 +31,22 @@ router.get("/products/:productName", async (req: Request, res: Response) => {
     const name = req?.params?.productName;
     const product = await ProductsModel.findOne({ productName: name });
     res.status(200).send(product);
+});
+
+// get all quesitons
+router.get("/questions", async (req: Request, res: Response) => {
+    try{
+        const questions = await QuestionsModel.find();
+        
+        res.status(200).send(questions);
+    } catch (error) {
+        if (error instanceof MongooseError){
+            res.status(500).send(error.message);
+            return;
+        }     
+        else{
+            res.status(500).send("unknown error");
+            return;
+        }
+    }
 });
