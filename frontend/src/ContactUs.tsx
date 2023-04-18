@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import QuestionForm from "./QuestionForm";
 
 function ContactUs() {
   return (
@@ -36,26 +37,7 @@ function ContactUs() {
       </div>
 
       <p className="text">FOR ANY QUESTIONS, PLEASE SEND US A MESSAGE</p>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="firstName" label="First Name" variant="standard" />
-        <TextField id="lastName" label="Last Name" variant="standard" />
-        <TextField required id="email" label="Email" variant="standard" />
-        <TextField id="subject" label="Subject" variant="standard" />
-        <TextField
-          id="message"
-          label="Message"
-          multiline
-          rows={4}
-          variant="standard"
-        />
-      </Box>
+      <QuestionForm />
     </>
   );
 }

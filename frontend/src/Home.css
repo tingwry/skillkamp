@@ -5,8 +5,8 @@
 }
 
 .center {
+    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .CoverImg {
@@ -116,6 +116,7 @@
     text-align: center;
 }
 
+
 .closedBtn {
     position: fixed;
     top: 8px;
@@ -134,18 +135,6 @@
 .btnContainer {
     display: flex;
     padding: 1rem 1rem;
-}
-
-.btnContainer button {
-    width: 100%;
-    margin: .5rem;
-    padding: 16px 0;
-    border: none;
-    color: #ffffff;
-}
-
-.btnPrimary  {
-    background-color: #411b57;
 }
 
 @media screen and (max-width: 500px) {
