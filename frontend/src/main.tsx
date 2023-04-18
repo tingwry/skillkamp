@@ -1,7 +1,7 @@
+import Button from "@mui/material/Button";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./App";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
 import ShopCollection from "./ShopCollection";

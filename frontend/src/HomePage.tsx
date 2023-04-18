@@ -1,7 +1,8 @@
 import { TabPanel, TabContext, TabList } from "@mui/lab";
 import type {} from "@mui/lab/themeAugmentation";
-import { Box, Tab } from "@mui/material";
+import { Box, Button, Tab } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ContactUs from "./ContactUs";
 import Home from "./Home";
 import OurStory from "./OurStory";
@@ -19,6 +20,9 @@ export default function HomePage() {
   return (
     <>
       <Box>
+        <Link to={"/"}>
+          <Button>Log In</Button>
+        </Link>
         <TabContext value={value}>
           <TabList
             aria-label="tabs"

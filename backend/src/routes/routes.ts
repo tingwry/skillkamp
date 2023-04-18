@@ -3,6 +3,7 @@ import { Request,Response } from "express";
 import { CallbackError, MongooseError } from 'mongoose';
 import { ProductsModel } from '../model/products';
 import { QuestionsModel } from '../model/questions';
+import { UsersModel } from '../model/users';
 // import { TokenPayload } from '../loginsignup/login.post'
 // import * as jwt from "jsonwebtoken";
 
@@ -33,7 +34,7 @@ router.get("/products/:productName", async (req: Request, res: Response) => {
     res.status(200).send(product);
 });
 
-// get all quesitons
+// get all questions
 router.get("/questions", async (req: Request, res: Response) => {
     try{
         const questions = await QuestionsModel.find();
@@ -77,4 +78,22 @@ router.post("/questions", async (req: Request, res: Response) => {
           .status(401)
           .json({ error: "Error submitting question, please try again." });
       }
+});
+
+// get all users
+router.get("/users", async (req: Request, res: Response) => {
+    try{
+        const users = await UsersModel.find();
+        
+        res.status(200).send(users);
+    } catch (error) {
+        if (error instanceof MongooseError){
+            res.status(500).send(error.message);
+            return;
+        }     
+        else{
+            res.status(500).send("unknown error");
+            return;
+        }
+    }
 });
