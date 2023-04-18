@@ -1,18 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
 import type {} from "@mui/lab/themeAugmentation";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
 import axios from "axios";
 import Product from "./dto/ProductDTO";
 import Popup from "./Popup";
-import { Link } from "react-router-dom";
 
 export default function NewArrivals() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -45,7 +36,6 @@ export default function NewArrivals() {
         ></Popup>
         <div className="container">
           {products.map((product) => (
-            // <Link to={"/products/" + product.productName}>
             <div key={product.productName} className="card">
               <div
                 key={product.productName}
@@ -57,6 +47,8 @@ export default function NewArrivals() {
                 }}
               />
               <div className="card">I'm a product</div>
+
+              <div className="card">{product.price}</div>
 
               <button
                 className="card"

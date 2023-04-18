@@ -9,8 +9,20 @@ export const router = Router();
 
 // get all products
 router.get("/products", async (req: Request, res: Response) => {
-    const products = await ProductsModel.find().select("productName imgUrl");
-    res.status(200).send(products);
+    try{
+        const products = await ProductsModel.find();
+        
+        res.status(200).send(products);
+    } catch (error) {
+        if (error instanceof MongooseError){
+            res.status(500).send(error.message);
+            return;
+        }     
+        else{
+            res.status(500).send("unknown error");
+            return;
+        }
+    }
 });
 
 // get 1 product

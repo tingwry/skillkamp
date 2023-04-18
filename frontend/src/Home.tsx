@@ -29,7 +29,8 @@ export default function Home(props: any) {
       >
         {index == 0 && (
           <>
-            <h1 className="text">Hello</h1> <button>Click me</button>
+            <h1 className="text">NEW COLLECTION</h1>{" "}
+            <button onClick={() => setTab("2")}>Shop Now</button>
           </>
         )}
       </div>

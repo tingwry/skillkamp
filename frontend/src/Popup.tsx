@@ -26,20 +26,41 @@
 
 // export default Popup;
 
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Product from "./dto/ProductDTO";
-// import { useParams } from "react-router-dom";
+import InputSpinner from "react-native-input-spinner";
 
 interface PopupProps {
   openDialog: boolean;
   setOpenDialog: (value: boolean) => void;
-  product: Product;
+  product: Product | null;
 }
 
 function Popup(props: PopupProps) {
   const { openDialog, setOpenDialog, product } = props;
+
+  // size + quantity
+  const [sizeVal, setSizeVal] = useState("");
+  const [quanVal, setQuanVal] = useState("");
+
+  const handleSizeChange = (event: SelectChangeEvent) => {
+    setSizeVal(event.target.value);
+  };
+  const handleQuanChange = (event: SelectChangeEvent) => {
+    setQuanVal(event.target.value);
+  };
+
   // const { productName } = useParams();
 
   // const [product, setProduct] = useState<Product>();
@@ -57,15 +78,45 @@ function Popup(props: PopupProps) {
 
   if (product == null) return null;
   return (
-    <Dialog open={openDialog} maxWidth="md">
-      <DialogTitle>
-        <div>title</div>
-      </DialogTitle>
+    <Dialog
+      open={openDialog}
+      onClose={() => setOpenDialog(false)}
+      maxWidth="md"
+    >
       <DialogContent>
-        <div>
-          <div>
-            <p>{product.productName}</p>
+        <div className="modalContainer">
+          <div className="modalCard">
             <img src={product?.imgUrl} />
+          </div>
+          <div className="modalCard">
+            <h2>I'm a product</h2>
+            <h3>{product.price}</h3>
+            <p>Size</p>
+            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
+              <InputLabel id="size-select-label">Size</InputLabel>
+              <Select
+                labelId="size-select-label"
+                id="size-select"
+                value={sizeVal}
+                label="Size"
+                onChange={handleSizeChange}
+              >
+                <MenuItem value={"12-18 months"}>12-18 months</MenuItem>
+                <MenuItem value={"18-24 months"}>18-24 months</MenuItem>
+                <MenuItem value={"2 years"}>2 years</MenuItem>
+                <MenuItem value={"3 years"}>3 years</MenuItem>
+                {/* ... */}
+              </Select>
+            </FormControl>
+            <p>Quantity</p>
+            <form>
+              <input type="number" min="1" defaultValue="1" />
+            </form>
+            <button
+            // onClick={}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </DialogContent>

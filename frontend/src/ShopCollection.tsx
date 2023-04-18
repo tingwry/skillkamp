@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 function ShopCollection() {
   const [openDialog, setOpenDialog] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   async function fetchProducts() {
     const res = await axios.get("http://localhost:4000/products");
@@ -49,7 +50,7 @@ function ShopCollection() {
               <Popup
                 openDialog={openDialog}
                 setOpenDialog={setOpenDialog}
-                productName={product.productName}
+                product={selectedProduct}
               ></Popup>
             </div>
             // </Link>

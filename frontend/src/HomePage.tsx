@@ -2,7 +2,9 @@ import { TabPanel, TabContext, TabList } from "@mui/lab";
 import type {} from "@mui/lab/themeAugmentation";
 import { Box, Tab } from "@mui/material";
 import { useState } from "react";
+import ContactUs from "./ContactUs";
 import Home from "./Home";
+import OurStory from "./OurStory";
 import ShopCollection from "./ShopCollection";
 
 export default function HomePage() {
@@ -16,7 +18,6 @@ export default function HomePage() {
   };
   return (
     <>
-      <h1 className="text">happy kids</h1>
       <Box>
         <TabContext value={value}>
           <TabList aria-label="tabs" onChange={handleTabChange} centered>
@@ -27,8 +28,8 @@ export default function HomePage() {
           </TabList>
           <TabPanel value="1">{<Home setTab={setValue} />}</TabPanel>
           <TabPanel value="2">{<ShopCollection />}</TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
-          <TabPanel value="4">Item Four</TabPanel>
+          <TabPanel value="3">{<OurStory />}</TabPanel>
+          <TabPanel value="4">{<ContactUs />}</TabPanel>
         </TabContext>
       </Box>
     </>
