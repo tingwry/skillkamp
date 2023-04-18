@@ -3,6 +3,7 @@ import type {} from "@mui/lab/themeAugmentation";
 import { Box, Button, Tab } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Signup from "./auth/Signup";
 import ContactUs from "./ContactUs";
 import Home from "./Home";
 import OurStory from "./OurStory";
@@ -20,7 +21,7 @@ export default function HomePage() {
   return (
     <>
       <Box>
-        <Link to={"/"}>
+        <Link to={"/signup"}>
           <Button>Log In</Button>
         </Link>
         <TabContext value={value}>
