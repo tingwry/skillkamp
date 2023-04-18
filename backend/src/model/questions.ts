@@ -7,7 +7,7 @@ const questionsSchema = new mongoose.Schema (
         firstName: { type: String, required: false },
         lastName: { type: String, required: false },
         email: { type: String, required: true },
-        subject: { type: Boolean, required: false },
+        subject: { type: String, required: false },
         message: { type: String, required: false }
     }
 )

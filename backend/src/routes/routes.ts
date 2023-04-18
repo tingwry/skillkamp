@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Request,Response } from "express";
-import { MongooseError } from 'mongoose';
+import { CallbackError, MongooseError } from 'mongoose';
 import { ProductsModel } from '../model/products';
 import { QuestionsModel } from '../model/questions';
 // import { TokenPayload } from '../loginsignup/login.post'
@@ -49,4 +49,32 @@ router.get("/questions", async (req: Request, res: Response) => {
             return;
         }
     }
+});
+
+// post question
+router.post("/questions", async (req: Request, res: Response) => {
+    const { firstName, lastName, email, subject, message } = req.body;
+    
+    // Validate input
+    if (!email) {
+        return res.status(400).json({ message: "`email` is required" });
+    }
+    
+    const newQuestion = new QuestionsModel({
+        firstName,
+        lastName,
+        email,
+        subject,
+        message
+    });
+
+    try {
+        await newQuestion.save();
+        return res.status(201).json({ message: "Question submitted!" });
+      } catch (err) {
+        console.log(err);
+        return res
+          .status(401)
+          .json({ error: "Error submitting question, please try again." });
+      }
 });
