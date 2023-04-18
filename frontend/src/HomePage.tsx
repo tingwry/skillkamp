@@ -20,11 +20,16 @@ export default function HomePage() {
     <>
       <Box>
         <TabContext value={value}>
-          <TabList aria-label="tabs" onChange={handleTabChange} centered>
-            <Tab value="1" label="Home" />
-            <Tab value="2" label="Shop Collection" />
-            <Tab value="3" label="Our Story" />
-            <Tab value="4" label="Contact" />
+          <TabList
+            aria-label="tabs"
+            onChange={handleTabChange}
+            centered
+            className="tabs"
+          >
+            <Tab className="tabs" value="1" label="Home" />
+            <Tab className="tabs" value="2" label="Shop Collection" />
+            <Tab className="tabs" value="3" label="Our Story" />
+            <Tab className="tabs" value="4" label="Contact" />
           </TabList>
           <TabPanel value="1">{<Home setTab={setValue} />}</TabPanel>
           <TabPanel value="2">{<ShopCollection />}</TabPanel>
