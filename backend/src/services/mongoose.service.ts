@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import * as mongoose from "mongoose";
 import { ProductsModel } from "../model/products";
+import { QuestionsModel } from "../model/questions";
 // import { UserModel } from "../model/user";
 
 // Initialize Connection
@@ -25,6 +26,7 @@ async function _connectToDatabase() {
     // Initialize collections
     const collections = {
       products: ProductsModel,
+      questions: QuestionsModel
     };
 
     console.log(`Successfully connected to database`);

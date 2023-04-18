@@ -44,11 +44,15 @@ function ContactUs() {
         noValidate
         autoComplete="off"
       >
+        <TextField id="firstName" label="First Name" variant="standard" />
+        <TextField id="lastName" label="Last Name" variant="standard" />
+        <TextField required id="email" label="Email" variant="standard" />
+        <TextField id="subject" label="Subject" variant="standard" />
         <TextField
-          required
-          id="standard-required"
-          label="Required"
-          defaultValue="Hello World"
+          id="message"
+          label="Message"
+          multiline
+          rows={4}
           variant="standard"
         />
       </Box>
