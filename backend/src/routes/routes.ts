@@ -149,7 +149,13 @@ router.post("/cart/:productName", async (req: Request, res: Response) => {
             return res.status(400).json({ message: "`size` and `quantity` are required" });
         }
         
-        User?.cart?.push(product?.productName);
+        let order = {
+            'product': product,
+            'size': size,
+            'quantity': quantity
+        };
+
+        User?.cart?.push(order);
         await User?.save();
         res.status(200).send('Added to cart!');
         
