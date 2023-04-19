@@ -4,8 +4,8 @@ import { CallbackError, MongooseError } from 'mongoose';
 import { ProductsModel } from '../model/products';
 import { QuestionsModel } from '../model/questions';
 import { UsersModel } from '../model/users';
-// import { TokenPayload } from '../loginsignup/login.post'
-// import * as jwt from "jsonwebtoken";
+import { TokenPayload } from '../auth/login.post';
+import * as jwt from "jsonwebtoken";
 
 export const router = Router();
 
@@ -97,3 +97,24 @@ router.get("/users", async (req: Request, res: Response) => {
         }
     }
 });
+
+// get all in a user's cart
+router.get("/cart", async (req: Request, res: Response) => {
+    // Check if token exists
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).json({ message: "No token found in Authorization header" });
+    }
+
+    // Validate token
+    let user: TokenPayload;
+    try {
+        user = jwt.verify(token, process.env.JWT_SECRET!) as TokenPayload;
+    } catch {
+        return res.status(401).json({ message: "Invalid token" });
+    }
+
+
+    const User = await UsersModel.findOne({ _id: user._id });
+    return res.status(200).json(User?.cart);
+})

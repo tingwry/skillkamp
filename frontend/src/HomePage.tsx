@@ -22,10 +22,13 @@ export default function HomePage() {
   return (
     <>
       <h1 className="text">happy kids</h1>
-      <Box>
+      {/* <Box> */}
+      <div>
         <Link to={"/signup"}>
           <Button>Log In</Button>
         </Link>
+      </div>
+      <div>
         <TabContext value={value}>
           <TabList
             aria-label="tabs"
@@ -43,7 +46,8 @@ export default function HomePage() {
           <TabPanel value="3">{<OurStory />}</TabPanel>
           <TabPanel value="4">{<ContactUs />}</TabPanel>
         </TabContext>
-      </Box>
+      </div>
+      {/* </Box> */}
       <hr></hr>
       <Footer />
     </>

@@ -48,41 +48,46 @@ function Signup() {
   };
 
   return (
-    <div className="screenCenter">
-      <h1 className="center">Sign Up</h1>
-      <p className="center">
-        Already a member? <Link to={"/login"}>Log In</Link>
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div className="center">
-          <TextField
-            id="email"
-            label="Email"
-            name="email"
-            variant="standard"
-            onChange={handleInput}
+    <>
+      <div className="closedBtn">
+        <Link to={"/"}>X</Link>
+      </div>
+      <div className="screenCenter">
+        <h1 className="center">Sign Up</h1>
+        <p className="center">
+          Already a member? <Link to={"/login"}>Log In</Link>
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="center">
+            <TextField
+              id="email"
+              label="Email"
+              name="email"
+              variant="standard"
+              onChange={handleInput}
+            />
+          </div>
+          <div className="center">
+            <TextField
+              id="password"
+              label="Password"
+              name="password"
+              variant="standard"
+              onChange={handleInput}
+            />
+          </div>
+          <ReCAPTCHA
+            sitekey="6Le_5JolAAAAAFMdtDEeEu_VqVqzjwe0h6pNidHX"
+            onChange={onChange}
           />
-        </div>
-        <div className="center">
-          <TextField
-            id="password"
-            label="Password"
-            name="password"
-            variant="standard"
-            onChange={handleInput}
-          />
-        </div>
-        <ReCAPTCHA
-          sitekey="6Le_5JolAAAAAFMdtDEeEu_VqVqzjwe0h6pNidHX"
-          onChange={onChange}
-        />
-        <div className="center">
-          <Button type="submit" id="submit" variant="text" color="primary">
-            Sign Up
-          </Button>
-        </div>
-      </form>
-    </div>
+          <div className="center">
+            <Button type="submit" id="submit" variant="text" color="primary">
+              Sign Up
+            </Button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 

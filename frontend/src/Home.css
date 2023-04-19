@@ -30,12 +30,20 @@ button {
 	text-shadow:0px 1px 0px #ffffff;
 }
 
-.tabs {
-    font-family: brandon-grotesque, sans-serif;
-}
 
 button:hover:not(.tabs) {
     border:1px solid #495057;
+}
+
+.icon {
+    height: 20px;
+    margin-left: 10px;
+}
+
+.closedBtn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
 }
 
 .shopNow {
@@ -160,13 +168,6 @@ button:hover:not(.tabs) {
     background-repeat: no-repeat;
     background-position: center center;
     text-align: center;
-}
-
-
-.closedBtn {
-    position: fixed;
-    top: 8px;
-    right: 8px;
 }
 
 .content {
