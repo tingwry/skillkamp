@@ -1,7 +1,6 @@
 import { TextField, Button, Box } from "@mui/material";
 import React, { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LogInWithEmail from "./LogInWithEmail";
 
 function Login() {
   return (

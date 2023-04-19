@@ -59,35 +59,7 @@ export default function NewArrivals() {
               >
                 Add to Cart
               </button>
-
-              {/* <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-                <div className="overlay">
-                  <div className="modalContainer">
-                    <img
-                      src="https://drive.google.com/uc?export=view&id=1yFSF-g7fxuPL9K5SyDwkAVCPt0pkhGHG"
-                      alt=""
-                    />
-                    <div className="modalRight">
-                      <p
-                        className="closedBtn"
-                        onClick={() => setOpenDialog(false)}
-                      >
-                        X
-                      </p>
-                      <div className="content">
-                        <p>heyhey</p>
-                      </div>
-                      <div className="btnContainer">
-                        <button className="btnPrimary">
-                          <span className="bold">YES</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Dialog> */}
             </div>
-            // </Link>
           ))}
         </div>
       </div>
