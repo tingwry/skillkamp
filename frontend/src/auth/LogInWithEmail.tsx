@@ -62,37 +62,42 @@ function LogInWithEmail() {
   };
 
   return (
-    <div className="screenCenter">
-      <h1 className="center">Log In</h1>
-      <p className="center">
-        New to this site? <Link to={"/signup"}>Sign Up</Link>
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div className="center">
-          <TextField
-            id="email"
-            label="Email"
-            name="email"
-            variant="standard"
-            onChange={handleInput}
-          />
-        </div>
-        <div className="center">
-          <TextField
-            id="password"
-            label="Password"
-            name="password"
-            variant="standard"
-            onChange={handleInput}
-          />
-        </div>
-        <div className="center">
-          <Button type="submit" id="submit" variant="text" color="primary">
-            Log In
-          </Button>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className="closedBtn">
+        <Link to={"/"}>X</Link>
+      </div>
+      <div className="screenCenter">
+        <h1 className="center">Log In</h1>
+        <p className="center">
+          New to this site? <Link to={"/signup"}>Sign Up</Link>
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="center">
+            <TextField
+              id="email"
+              label="Email"
+              name="email"
+              variant="standard"
+              onChange={handleInput}
+            />
+          </div>
+          <div className="center">
+            <TextField
+              id="password"
+              label="Password"
+              name="password"
+              variant="standard"
+              onChange={handleInput}
+            />
+          </div>
+          <div className="center">
+            <Button type="submit" id="submit" variant="text" color="primary">
+              Log In
+            </Button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
