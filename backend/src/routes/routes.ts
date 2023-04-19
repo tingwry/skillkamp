@@ -118,3 +118,49 @@ router.get("/cart", async (req: Request, res: Response) => {
     const User = await UsersModel.findOne({ _id: user._id });
     return res.status(200).json(User?.cart);
 })
+
+// add to cart
+router.post("/cart/:productName", async (req: Request, res: Response) => {
+    // Check if token exists
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).json({ message: "No token found in Authorization header" });
+    }
+
+    // Validate token
+    let user: TokenPayload;
+    try {
+        user = jwt.verify(token, process.env.JWT_SECRET!) as TokenPayload;
+    } catch {
+        return res.status(401).json({ message: "Invalid token" });
+    }
+
+    const productName = req?.params?.productName;
+
+    // Add to cart
+    const { size, quantity } = req.body;
+    
+    try{
+        const User = await UsersModel.findOne({ _id: user._id });
+        const product = await ProductsModel.findOne({ productName });
+    
+        // Validate input
+        if (!size || !quantity) {
+            return res.status(400).json({ message: "`size` and `quantity` are required" });
+        }
+        
+        User?.cart?.push(product?.productName);
+        await User?.save();
+        res.status(200).send('Added to cart!');
+        
+    } catch (error) {
+        if (error instanceof MongooseError){
+            res.status(500).send(error.message);
+            return;
+        }     
+        else{
+            res.status(500).send("unknown error");
+            return;
+        }
+    }
+});
