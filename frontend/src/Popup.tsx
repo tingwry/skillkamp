@@ -1,31 +1,3 @@
-// import React from "react";
-
-// function Popup() {
-//   return (
-//     <div onClick={onClose} className="overlay">
-//       <div className="modalContainer">
-//         {/* <img src={} alt='' /> */}
-//         <h1>My popuppp</h1>
-//         <div className="modalRight">
-//           <p onClick={onClose} className="closedBtn">
-//             X
-//           </p>
-//           <div className="content">
-//             <p>heyhey</p>
-//           </div>
-//           <div className="btnContainer">
-//             <button className="btnPrimary">
-//               <span className="bold">YES</span>
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Popup;
-
 import {
   Dialog,
   DialogContent,
@@ -36,10 +8,9 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useReducer, useState } from "react";
 import Product from "./dto/ProductDTO";
-import InputSpinner from "react-native-input-spinner";
+import { Link, useNavigate } from "react-router-dom";
 
 interface PopupProps {
   openDialog: boolean;
@@ -53,6 +24,15 @@ function Popup(props: PopupProps) {
   // size + quantity
   const [sizeVal, setSizeVal] = useState("");
   const [quanVal, setQuanVal] = useState("");
+  const [formInput, setFormInput] = useReducer(
+    (state: any, newState: any) => ({ ...state, ...newState }),
+    {
+      size: "",
+      quantity: "",
+    }
+  );
+
+  const navigate = useNavigate();
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSizeVal(event.target.value);
@@ -61,20 +41,41 @@ function Popup(props: PopupProps) {
     setQuanVal(event.target.value);
   };
 
-  // const { productName } = useParams();
+  const handleSubmit = (evt: any) => {
+    evt.preventDefault();
 
-  // const [product, setProduct] = useState<Product>();
+    const data = new FormData(evt.currentTarget);
+    const jsonData = {
+      size: data.get("size"),
+      quantity: data.get("quantity"),
+    };
 
-  // async function fetchProduct() {
-  //   const res = await axios.get(
-  //     "http://localhost:4000/products/" + { productName }
-  //   );
-  //   setProduct(res.data);
-  // }
+    const token = localStorage.getItem("token");
+    fetch("http://localhost:4000/cart/" + product?.productName, {
+      method: "POST",
+      body: JSON.stringify(jsonData),
+      headers: {
+        "Content-Type": "application/json",
+        // crossDomain: true,
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: token || "",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => console.log("Success:", JSON.stringify(response)))
+      .then(() => navigate("/"))
+      .catch((error) => {
+        alert("Add to cart failed.");
+        console.error("Error:", error);
+      });
+  };
 
-  // useEffect(() => {
-  //   fetchProduct();
-  // }, []);
+  const handleInput = (evt: any) => {
+    const name = evt.target.name;
+    const newValue = evt.target.value;
+    setFormInput({ [name]: newValue });
+  };
 
   if (product == null) return null;
   return (
@@ -91,32 +92,33 @@ function Popup(props: PopupProps) {
           <div className="modalCard">
             <h2>I'm a product</h2>
             <h3>{product.price}</h3>
-            <p>Size</p>
-            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-              <InputLabel id="size-select-label">Size</InputLabel>
-              <Select
-                labelId="size-select-label"
-                id="size-select"
-                value={sizeVal}
-                label="Size"
-                onChange={handleSizeChange}
-              >
-                <MenuItem value={"12-18 months"}>12-18 months</MenuItem>
-                <MenuItem value={"18-24 months"}>18-24 months</MenuItem>
-                <MenuItem value={"2 years"}>2 years</MenuItem>
-                <MenuItem value={"3 years"}>3 years</MenuItem>
-                {/* ... */}
-              </Select>
-            </FormControl>
-            <p>Quantity</p>
-            <form>
-              <input type="number" min="1" defaultValue="1" />
+            <form onSubmit={handleSubmit}>
+              <p>Size</p>
+              <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
+                <InputLabel id="size-select-label">Size</InputLabel>
+                <Select
+                  name="size"
+                  labelId="size-select-label"
+                  id="size-select"
+                  value={sizeVal}
+                  label="Size"
+                  onChange={handleSizeChange}
+                >
+                  <MenuItem value={"12-18 months"}>12-18 months</MenuItem>
+                  <MenuItem value={"18-24 months"}>18-24 months</MenuItem>
+                  <MenuItem value={"2 years"}>2 years</MenuItem>
+                  <MenuItem value={"3 years"}>3 years</MenuItem>
+                  {/* ... */}
+                </Select>
+              </FormControl>
+
+              <p>Quantity</p>
+              <input name="quantity" type="number" min="1" defaultValue="1" />
+
+              <button type="submit" id="submit">
+                Add to Cart
+              </button>
             </form>
-            <button
-            // onClick={}
-            >
-              Add to Cart
-            </button>
           </div>
         </div>
       </DialogContent>

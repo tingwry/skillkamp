@@ -157,7 +157,7 @@ router.post("/cart/:productName", async (req: Request, res: Response) => {
 
         User?.cart?.push(order);
         await User?.save();
-        res.status(200).send('Added to cart!');
+        return res.status(400).json('Added to cart!');
         
     } catch (error) {
         if (error instanceof MongooseError){

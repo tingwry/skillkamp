@@ -31,7 +31,23 @@ function LogInWithEmail() {
       },
     })
       .then((response) => response.json())
-      .then((response) => console.log("Success:", JSON.stringify(response)))
+      .then((data) => {
+        console.log(data, "userLogin");
+        if (data.token) {
+          if (jsonData.email !== "admin") {
+            window.localStorage.setItem("token", data.token);
+            console.log(data.token);
+            alert("Login success!");
+          } else {
+            window.localStorage.setItem("token", data.token);
+            console.log(data.token);
+            alert("Login success!");
+          }
+          window.location.pathname = "/";
+        } else {
+          alert("login failed");
+        }
+      })
       .then(() => navigate("/"))
       .catch((error) => {
         alert("Login failed.");
